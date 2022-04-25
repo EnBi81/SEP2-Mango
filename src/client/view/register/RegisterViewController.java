@@ -1,5 +1,6 @@
 package client.view.register;
 
+import client.view.ViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
