@@ -2,11 +2,12 @@ package client.view.Login;
 
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
+import client.view.ViewController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class LoginViewController
+public class LoginViewController implements ViewController
 {
   public TextField username;
   public TextField password;
