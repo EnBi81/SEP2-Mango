@@ -30,6 +30,8 @@ public class RegisterViewController implements ViewController
   {
     this.viewHandler = viewHandler;
     viewModel = viewModelFactory.getRegisterViewModel();
+
+    errorMessage.textProperty().bindBidirectional(viewModel.getErrorMessage()); // binds with the errorMessage in VM
   }
 
   @FXML private void onBack(ActionEvent actionEvent)
