@@ -1,9 +1,10 @@
 package server.model;
 
 import transferobjects.LoginRequest;
+import transferobjects.User;
 
 public interface UserModel
 {
-  void login(LoginRequest request);
-  void register(LoginRequest request);
+  User login(LoginRequest request);
+  User register(LoginRequest request);
 }
