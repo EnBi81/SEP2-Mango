@@ -27,7 +27,7 @@ public class ViewModelFactory
   {
     if(registerViewModel == null)
     {
-      registerViewModel = new RegisterViewModel();
+      registerViewModel = new RegisterViewModel(modelFactory.getUserModel());
     }
     return registerViewModel;
   }
