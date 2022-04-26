@@ -2,7 +2,6 @@ package client.core;
 
 import client.view.Login.LoginViewController;
 import client.view.register.RegisterViewController;
-import client.view.register.RegisterViewModel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +13,7 @@ public class ViewHandler
 {
   private ViewModelFactory viewModelFactory;
   private Stage stage;
-  private FXMLLoader loader = new FXMLLoader();
+
   private  Parent root = null;
 
   public ViewHandler(ViewModelFactory viewModelFactory, Stage stage)
@@ -30,8 +29,8 @@ public class ViewHandler
 
   public void openLoginView()
   {
+    FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("../view/Login/LoginView.fxml"));
-
 
     try
     {
@@ -53,6 +52,8 @@ public class ViewHandler
 
   public void openRegisterView()
   {
+    FXMLLoader loader = new FXMLLoader();
+
     loader.setLocation(getClass().getResource("../view/register/RegisterView.fxml"));
 
     try

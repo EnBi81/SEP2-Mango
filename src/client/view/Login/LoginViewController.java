@@ -21,9 +21,9 @@ public class LoginViewController implements ViewController
     this.viewHandler = viewHandler;
     this.viewModel = viewModelFactory.getLoginViewModel();
 
-    username.textProperty().bindBidirectional(viewModel.getUsername());
+  /*  username.textProperty().bindBidirectional(viewModel.getUsername());
     password.textProperty().bindBidirectional(viewModel.getPassword());
-    errorLabel.textProperty().bind(viewModel.getErrorMessage());
+    errorLabel.textProperty().bind(viewModel.getErrorMessage());*/
   }
 
   public void onLogIn(ActionEvent actionEvent)
@@ -32,5 +32,6 @@ public class LoginViewController implements ViewController
 
   public void onRegister(ActionEvent actionEvent)
   {
+    viewHandler.openRegisterView();
   }
 }
