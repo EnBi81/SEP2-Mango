@@ -1,0 +1,213 @@
+Index: src/client/core/ClientFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package client.core;\r\n\r\npublic class ClientFactory\r\n{\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/client/core/ClientFactory.java b/src/client/core/ClientFactory.java
+--- a/src/client/core/ClientFactory.java	(revision 1f8bd7610fcf8ea072ce921273a0bdd8cf29295e)
++++ b/src/client/core/ClientFactory.java	(date 1650961972024)
+@@ -1,5 +1,17 @@
+ package client.core;
+ 
++import client.networking.Client;
++
+ public class ClientFactory
+ {
++  private Client client;
++
++  public Client getClient()
++  {
++    if(client == null)
++    {
++    ///create client
++    }
++    return client;
++  }
+ }
+Index: src/client/core/ViewModelFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package client.core;\r\n\r\n\r\npublic class ViewModelFactory\r\n{\r\n  private ModelFactory modelFactory;\r\n\r\n  public ViewModelFactory(ModelFactory modelFactory)\r\n  {\r\n    this.modelFactory = modelFactory;\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/client/core/ViewModelFactory.java b/src/client/core/ViewModelFactory.java
+--- a/src/client/core/ViewModelFactory.java	(revision 1f8bd7610fcf8ea072ce921273a0bdd8cf29295e)
++++ b/src/client/core/ViewModelFactory.java	(date 1650962776773)
+@@ -1,12 +1,34 @@
+ package client.core;
+ 
++import client.view.Login.LoginViewModel;
++import client.view.register.RegisterViewModel;
+ 
+ public class ViewModelFactory
+ {
+   private ModelFactory modelFactory;
++  private LoginViewModel loginViewModel;
++  private RegisterViewModel registerViewModel;
+ 
+   public ViewModelFactory(ModelFactory modelFactory)
+   {
+     this.modelFactory = modelFactory;
+   }
++
++  public LoginViewModel getLoginViewModel()
++  {
++    if(loginViewModel == null)
++    {
++      loginViewModel = new LoginViewModel();
++    }
++    return loginViewModel;
++  }
++
++  public RegisterViewModel getRegisterViewModel()
++  {
++    if(registerViewModel == null)
++    {
++      registerViewModel = new RegisterViewModel();
++    }
++    return registerViewModel;
++  }
+ }
+Index: src/client/core/ModelFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package client.core;\r\n\r\npublic class ModelFactory\r\n{\r\n  private ClientFactory clientFactory;\r\n\r\n  public ModelFactory(ClientFactory clientFactory)\r\n  {\r\n    this.clientFactory = clientFactory;\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/client/core/ModelFactory.java b/src/client/core/ModelFactory.java
+--- a/src/client/core/ModelFactory.java	(revision 1f8bd7610fcf8ea072ce921273a0bdd8cf29295e)
++++ b/src/client/core/ModelFactory.java	(date 1650961972044)
+@@ -1,11 +1,25 @@
+ package client.core;
+ 
++import client.model.UserModel;
++
+ public class ModelFactory
+ {
+   private ClientFactory clientFactory;
++  private UserModel userModel;
+ 
+   public ModelFactory(ClientFactory clientFactory)
+   {
+     this.clientFactory = clientFactory;
+   }
++
++  public UserModel getUserModel()
++  {
++    if(userModel == null)
++    {
++      // create userModel
++    }
++    return userModel;
++  }
++
++
+ }
+Index: src/client/core/ViewHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package client.core;\r\n\r\npublic class ViewHandler\r\n{\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/client/core/ViewHandler.java b/src/client/core/ViewHandler.java
+--- a/src/client/core/ViewHandler.java	(revision 1f8bd7610fcf8ea072ce921273a0bdd8cf29295e)
++++ b/src/client/core/ViewHandler.java	(date 1650962776764)
+@@ -1,5 +1,75 @@
+ package client.core;
+ 
++import client.view.Login.LoginViewController;
++import client.view.register.RegisterViewController;
++import client.view.register.RegisterViewModel;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import javafx.stage.Stage;
++
++import java.io.IOException;
++
+ public class ViewHandler
+ {
++  private ViewModelFactory viewModelFactory;
++  private Stage stage;
++  private FXMLLoader loader = new FXMLLoader();
++  private  Parent root = null;
++
++  public ViewHandler(ViewModelFactory viewModelFactory, Stage stage)
++  {
++    this.viewModelFactory = viewModelFactory;
++    this.stage = stage;
++  }
++
++  public void start()
++  {
++    openLoginView();
++  }
++
++  public void openLoginView()
++  {
++    loader.setLocation(getClass().getResource("../view/Login/LoginView.fxml"));
++
++
++    try
++    {
++      root = loader.load();
++    }
++    catch (IOException e)
++    {
++      e.printStackTrace();
++    }
++
++    LoginViewController controller = loader.getController();
++    controller.init(this, viewModelFactory);
++    stage.setTitle("Log in");
++
++    Scene scene =new Scene(root);
++    stage.setScene(scene);
++    stage.show();
++  }
++
++  public void openRegisterView()
++  {
++    loader.setLocation(getClass().getResource("../view/register/RegisterView.fxml"));
++
++    try
++    {
++      root = loader.load();
++    }
++    catch (IOException e)
++    {
++      e.printStackTrace();
++    }
++
++    RegisterViewController controller = loader.getController();
++    //controller.init(this, viewModelFactory);
++    stage.setTitle("Register");
++
++    Scene scene =new Scene(root);
++    stage.setScene(scene);
++    stage.show();
++  }
+ }
+Index: SEP2-Project.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n    <orderEntry type=\"library\" name=\"JavaFX\" level=\"application\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SEP2-Project.iml b/SEP2-Project.iml
+--- a/SEP2-Project.iml	(revision 1f8bd7610fcf8ea072ce921273a0bdd8cf29295e)
++++ b/SEP2-Project.iml	(date 1650962305633)
+@@ -8,5 +8,6 @@
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+     <orderEntry type="library" name="JavaFX" level="application" />
++    <orderEntry type="library" name="lib18" level="application" />
+   </component>
+ </module>
+\ No newline at end of file
