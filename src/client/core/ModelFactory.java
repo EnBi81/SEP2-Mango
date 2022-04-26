@@ -1,6 +1,7 @@
 package client.core;
 
 import client.model.UserModel;
+import client.model.UserModelImp;
 
 public class ModelFactory
 {
@@ -16,7 +17,7 @@ public class ModelFactory
   {
     if(userModel == null)
     {
-      // create userModel
+      userModel = new UserModelImp(clientFactory.getClient());
     }
     return userModel;
   }

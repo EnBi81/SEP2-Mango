@@ -17,6 +17,5 @@ public class CanEat extends Application
     ViewHandler viewHandler = new ViewHandler(viewModelFactory, stage);
 
     viewHandler.start();
-
   }
 }

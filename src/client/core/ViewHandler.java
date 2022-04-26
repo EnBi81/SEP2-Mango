@@ -14,8 +14,6 @@ public class ViewHandler
   private ViewModelFactory viewModelFactory;
   private Stage stage;
 
-  private  Parent root = null;
-
   public ViewHandler(ViewModelFactory viewModelFactory, Stage stage)
   {
     this.viewModelFactory = viewModelFactory;
@@ -31,6 +29,8 @@ public class ViewHandler
   {
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("../view/Login/LoginView.fxml"));
+
+    Parent root = null;
 
     try
     {
@@ -56,6 +56,8 @@ public class ViewHandler
 
     loader.setLocation(getClass().getResource("../view/register/RegisterView.fxml"));
 
+    Parent root = null;
+
     try
     {
       root = loader.load();
@@ -68,6 +70,7 @@ public class ViewHandler
     RegisterViewController controller = loader.getController();
     controller.init(this, viewModelFactory);
     stage.setTitle("Register");
+
 
     Scene scene =new Scene(root);
     stage.setScene(scene);
