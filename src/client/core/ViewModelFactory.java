@@ -18,7 +18,7 @@ public class ViewModelFactory
   {
     if(loginViewModel == null)
     {
-      loginViewModel = new LoginViewModel();
+      loginViewModel = new LoginViewModel(modelFactory.getUserModel());
     }
     return loginViewModel;
   }

@@ -21,7 +21,7 @@ public class RegisterViewModel
 
     userModel.register(firstName, lastName, username, password, userType);
 
-    return new User(); // rewrite this return
+    return new User(username,userType,firstName,lastName); // rewrite this return
   }
 
   public StringProperty getErrorMessage(){

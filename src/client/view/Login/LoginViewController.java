@@ -6,6 +6,7 @@ import client.view.ViewController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import shared.UserType;
 
 public class LoginViewController implements ViewController
 {
@@ -21,13 +22,18 @@ public class LoginViewController implements ViewController
     this.viewHandler = viewHandler;
     this.viewModel = viewModelFactory.getLoginViewModel();
 
-  /*  username.textProperty().bindBidirectional(viewModel.getUsername());
+    username.textProperty().bindBidirectional(viewModel.getUsername());
     password.textProperty().bindBidirectional(viewModel.getPassword());
-    errorLabel.textProperty().bind(viewModel.getErrorMessage());*/
+    errorLabel.textProperty().bind(viewModel.getError());
   }
 
   public void onLogIn(ActionEvent actionEvent)
   {
+    if (username.getText().equals("") || password.getText().equals(""))
+    {
+      errorLabel.setText("Empty field");
+    }
+     viewModel.login(username.getText(), password.getText());
   }
 
   public void onRegister(ActionEvent actionEvent)
