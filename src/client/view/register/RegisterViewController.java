@@ -1,5 +1,7 @@
 package client.view.register;
 
+import client.core.ViewHandler;
+import client.core.ViewModelFactory;
 import client.view.ViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +21,13 @@ public class RegisterViewController implements ViewController
   @FXML private PasswordField password;
   @FXML private PasswordField passwordRepeat;
   @FXML private Label errorMessage;
+  private ViewModelFactory viewModelFactory;
+
+  @Override public void init(ViewHandler viewHandler,
+      ViewModelFactory viewModelFactory)
+  {
+    this.viewModelFactory = viewModelFactory;
+  }
 
   @FXML private void onBack(ActionEvent actionEvent)
   {
@@ -27,4 +36,6 @@ public class RegisterViewController implements ViewController
   @FXML private void onRegister(ActionEvent actionEvent)
   {
   }
+
+
 }
