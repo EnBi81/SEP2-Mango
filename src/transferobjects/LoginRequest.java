@@ -2,7 +2,9 @@ package transferobjects;
 
 import shared.UserType;
 
-public class LoginRequest
+import java.io.Serializable;
+
+public class LoginRequest implements Serializable
 {
   private String firstName;
   private String lastName;
