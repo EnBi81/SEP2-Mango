@@ -112,7 +112,8 @@ public class ServerHandler implements Runnable
    */
   public void closeClient(){
 
-    //todo fire "Closing" event here for the connection pool (later)
+    // todo fire "Closing" event here for the connection pool (later)
+    //      so the pool can remove it form the list when the connection is closed
 
     // Close streams
     closeObject(toClient);
