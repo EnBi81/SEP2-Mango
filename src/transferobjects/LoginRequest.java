@@ -14,17 +14,11 @@ public class LoginRequest implements Serializable
   private boolean isRegister;
 
 
-  public LoginRequest()
-  {
-    throw new RuntimeException("Not implemented");
-  }
-
   public LoginRequest(String username, String password)
   {
     this.username = username;
     this.password = password;
     isRegister = false;
-    //todo what should I do with the other parameters?
   }
 
   public LoginRequest(String firstName, String lastName, String username, String password, UserType userType)

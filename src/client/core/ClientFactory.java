@@ -1,6 +1,9 @@
 package client.core;
 
 import client.networking.Client;
+import client.networking.SocketClient;
+
+import java.io.IOException;
 
 public class ClientFactory
 {
@@ -10,7 +13,14 @@ public class ClientFactory
   {
     if(client == null)
     {
-    ///create client
+      try
+      {
+        client = new SocketClient();
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
     }
     return client;
   }

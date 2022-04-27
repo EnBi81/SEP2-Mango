@@ -23,7 +23,7 @@ public class UserModelImp implements UserModel
 
   private void sendLogin(PropertyChangeEvent event)
   {
-    //todo should we send a user object or Strings...
+
     support.firePropertyChange(LOGGED_IN_RECEIVED, -1, event.getNewValue());
   }
 
