@@ -54,7 +54,7 @@ public class ViewHandler
   {
     FXMLLoader loader = new FXMLLoader();
 
-    loader.setLocation(getClass().getResource("../view/register/RegisterView.fxml"));
+    loader.setLocation(getClass().getResource("../view/register/RegisterViewNew.fxml"));
 
     Parent root = null;
 
