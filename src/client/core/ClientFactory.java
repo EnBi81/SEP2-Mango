@@ -19,7 +19,11 @@ public class ClientFactory
       }
       catch (IOException e)
       {
-        e.printStackTrace();
+        System.err.println("--------------------------------------------");
+        System.err.println("          SERVER IS NOT RUNNING");
+        System.err.println("--------------------------------------------");
+
+        System.exit(0);
       }
     }
     return client;
